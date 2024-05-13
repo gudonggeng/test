@@ -56,7 +56,7 @@ sigmod:scipy.special.expit(x)
 $$MSE = \sum^n_{i=1}\frac{1}{n}(f(x_{i})-y_{i})$$
         2. 交叉熵（cross entropy）：值越小，结果越准。分类， 属于哪一类。
          *一般输入标签是位矢量（分类标签），使用交叉熵。*
-$$C = -\frac{1}{n}\sum_{x}[y\ln a+(1-y)\ln(1-a)]$$
+$$C = -\frac{1}{n}\sum_{x}(y*ln a+(1-y)*ln(1-a))$$
 
 4. 反向传播计算偏导数
 5. 使用梯度下降或者先进的优化方法更新权值
@@ -64,7 +64,8 @@ $$C = -\frac{1}{n}\sum_{x}[y\ln a+(1-y)\ln(1-a)]$$
      梯度方向表示函数值增大的方向，梯度的模表示函数值增大的速率。
      *沿着梯度方向，反向更新，得到函数的最小值*。（全局最小值或局部最小值）
      一般乘一个小于1的**学习率**（调整一下步长）
-$$\theta_{t+1}=\theta _{t}-\alpha_{t}\triangledown f(\theta_{t})$$
+$$\theta_{t+1} = \theta_t - \alpha_t \cdot \nabla f(\theta_t)$$
+
 
 
 ##  过拟合的解决办法
