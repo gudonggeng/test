@@ -12,37 +12,42 @@ keras是由python编写的基于theano/tensorflow的深度学习框架
 7. 测试效果
 
 # 从零实现手写数字
-# 神经网络训练过程：
+## 神经网络训练过程：
 1. 参数的随机初始化(权重)
-
-
+```
 0-1随机（-0.5~0.5）
-`
 self.wih = numpy.random.rand(self.hnodes, self.inodes) - 0.5  # random.rand:生成0-1的随机数  
 self.who = numpy.random.rand(self.onodes, self.hnodes) - 0.5
-`
 
 高斯随机
-`
 self.wih = (numpy.random.normal(0.0, pow(self.hnodes, -0.5), (self.hnodes, self.inodes)))  
 self.who = (numpy.random.normal(0.0, pow(self.onodes, -0.5), (self.onodes, self.hnodes)))
-`
+```
 
 2. 前向传播计算每个样本对应的输出节点激活函数值
      激活函数必须满足：**1.非线性 2.可微性 3.单调性**
-     常用的激活函数：
-$$\begin{array}\
-~~~~~~~~1.~~sigmoid函数~~~~~y = logsig(x)= \frac{1}{1+e^{-x}} \\
-~~~~~~~~~2.~~~~tanh函数~~~~~~~~y = tansig(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}} \\
-3.~~~~ReLU函数~~~~~~f(x) = max(0,x) \\
-4.~~~~~Softmax函数~~~ ~~~~~~~~S_{i}=\frac{e^{V_{i}}}{\sum_{j}e^{V_{j}}}
-\end{array}$$
+
+  常用的激活函数：
+    
+    1.sigmoid函数:
+
+$$y = logsig(x)= \frac{1}{1+e^{-x}} $$
+
+    2.tanh函数
+    
+$$y = tansig(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+    
+    3.ReLU函数
+$$f(x) = max(0,x) $$
+
+    4.Softmax函数
+$$S_{i}=\frac{e^{V_{i}}}{\sum_{j}e^{V_{j}}}$$
 
 其中： Softmax函数用于多分类过程中，将多个神经元的输出，映射到[0,1]区间内，可以看成概率理解。
-`
+```
 在special库中：
 sigmod:scipy.special.expit(x)
-`
+```
 
 3. 计算损失函数
      **损失函数：** 差值。
